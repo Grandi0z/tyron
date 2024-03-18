@@ -20,7 +20,10 @@ class Router {
         //we use the $_SERVER['REQUEST_METHOD'] to get the current request method
         foreach ($this->routes[$_SERVER['REQUEST_METHOD']] as $route) {
             if($route->matches($this->url)) {
-                $route->execute();
+                // can work without return, but this will help to sent our answer only
+                // once, when we will gate something that matches
+                // so avoid having the multiple time header sendind warning
+                return $route->execute();
             }
         }
         return header('HTTP/1.0 404 Not Found');
