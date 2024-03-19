@@ -18,9 +18,9 @@ class Controller {
         ob_start();
         $path = str_replace('.', DIRECTORY_SEPARATOR, $path);
         require VIEWS . $path . '.php'; // will not display
-        if($params){
-            $params = extract($params);
-        }
+        // if($params){
+        //     $params = extract($params);
+        // }
         $content = ob_get_clean(); //take and clean the content from buffer
         require VIEWS . 'layout.php';
     }
