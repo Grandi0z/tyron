@@ -2,7 +2,16 @@
 
 namespace App\Controllers;
 
+use Database\DBConnection;
+
 class Controller {
+
+    protected $db;
+
+    function __construct(DBConnection $db) {
+        $this->db = $db;
+    }
+        
     public function view(string $path, array $params = []) {
         // start the buffering so we can take the file (index.php)
         // keep it some where before to display it with a require

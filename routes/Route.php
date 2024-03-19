@@ -2,6 +2,8 @@
 
 namespace Router;
 
+use Database\DBConnection;
+
 class Route {
     public $path;
     public $action;
@@ -28,7 +30,7 @@ class Route {
 
     public function execute() {
         $params = explode('@', $this->action);
-        $controller = new $params[0](); //BlogController() is the index 0 so we create it here
+        $controller = new $params[0](new DBConnection('tyrion_bd', 'localhost', 'root', '')); //BlogController() is the index 0 so we create it here
         $method = $params[1];
         // the 0 index is the url
         // because if we have an id it will be in the index 1 of the matches array
